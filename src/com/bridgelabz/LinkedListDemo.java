@@ -100,6 +100,18 @@ class LinkedList {
         }
     }
 
+    public boolean search(Node head, int x) {
+        Node current = head;    //Initialize current
+        while (current != null) {
+            if (current.data == x)
+                return true;
+            current = current.next;
+
+        }
+        return false;  //data not found
+
+    }
+
 }
 
 public class LinkedListDemo {
@@ -113,7 +125,8 @@ public class LinkedListDemo {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List \n 4. Insert data at random position \n 5. Delete first node \n 6. Delete last node \n 7.Quit");
+            System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List " +
+                    "\n 4. Insert data at random position \n 5. Delete first node \n 6. Delete last node \n 7. Search node \n 8.Quit");
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -141,11 +154,23 @@ public class LinkedListDemo {
                 case 5:
                     linkedList.pop();
                     break;
+
                 case 6:
                     linkedList.popLast();
                     break;
 
                 case 7:
+                    System.out.println("Enter the number ");
+                    int searchnumber= sc.nextInt();
+                    if (linkedList.search(linkedList.head,searchnumber))
+                    {
+                        System.out.println(" \n Yes. Element is Found");
+                    }
+                    else
+                        System.out.println("\n No. Element is not found");
+                    break;
+
+                case 8:
                     System.out.println("Thank you");
                     break;
             }
