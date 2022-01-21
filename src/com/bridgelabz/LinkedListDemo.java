@@ -72,9 +72,17 @@ class LinkedList {
                     temp.next = newNode;
                     newNode.next = nextNode;
                 }
-//                System.out.print(temp.data + " -> ");
                 temp = temp.next;
             }
+        }
+    }
+
+    //Delete first node from Linked List
+    public void pop() {
+        if (head == null) {
+            System.out.println("Linked List is Empty.");
+        } else {
+            head = head.next;
         }
     }
 
@@ -91,7 +99,7 @@ public class LinkedListDemo {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List \n 4. Insert data at random position \n 5.Quit");
+            System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List \n 4. Insert data at random position \n 5. Delete first node \n 6.Quit");
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -117,6 +125,10 @@ public class LinkedListDemo {
                     break;
 
                 case 5:
+                    linkedList.pop();
+                    break;
+                    
+                case 6:
                     System.out.println("Thank you");
                     break;
             }
