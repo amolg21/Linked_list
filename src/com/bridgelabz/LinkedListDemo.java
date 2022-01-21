@@ -1,4 +1,5 @@
 package com.bridgelabz;
+
 import java.util.Scanner;
 
 class Node {
@@ -31,28 +32,65 @@ class LinkedList {
             head = newNode;
         }
     }
-public void showList() {
 
-    if(head == null) {
-        System.out.println("Linked List is Empty.");
-    } else {
-        Node temp = head;
-        while(temp != null) {
-            System.out.print(temp.data +"->");
-            temp = temp.next;
+    public void showList() {
+
+        if (head == null) {
+            System.out.println("Linked List is Empty.");
+        } else {
+            Node temp = head;
+            while (temp != null) {
+                System.out.print(temp.data + "->");
+                temp = temp.next;
+            }
         }
     }
-}
+    // Adding new value from last.
+    public void insertLast(int data) {
+        Node newNode = new Node(data);
+        if (tail == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+    }
 }
 
 public class LinkedListDemo {
 
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
-        linkedList.insertFirst(70);
-        linkedList.insertFirst(30);
-        linkedList.insertFirst(56);
-        linkedList.showList();
+        //    linkedList.insertFirst(70);
+        //  linkedList.insertFirst(30);
+        //linkedList.insertFirst(56);
+
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List \n 4.Quit");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the number");
+                    int firstnumber = sc.nextInt();
+                    linkedList.insertFirst(firstnumber);
+                    break;
+                case 2:
+                    System.out.println("Enter the number");
+                    int lastnumber = sc.nextInt();
+                    linkedList.insertLast(lastnumber);
+                    break;
+                case 3:
+                    linkedList.showList();
+                    break;
+                case 4:
+                    System.out.println("Thank you");
+                    break;
+            }
+        } while (choice != 4);
+       // linkedList.showList();
 
     }
 }
