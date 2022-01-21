@@ -45,6 +45,7 @@ class LinkedList {
             }
         }
     }
+
     // Adding new value from last.
     public void insertLast(int data) {
         Node newNode = new Node(data);
@@ -56,6 +57,27 @@ class LinkedList {
             tail = newNode;
         }
     }
+
+    public void insertafter(int data, int newdata) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            Node temp = head;
+            Node nextNode;
+            while (temp != null) {
+                nextNode = temp.next;
+                if (temp.data == newdata) {
+                    temp.next = newNode;
+                    newNode.next = nextNode;
+                }
+//                System.out.print(temp.data + " -> ");
+                temp = temp.next;
+            }
+        }
+    }
+
 }
 
 public class LinkedListDemo {
@@ -69,7 +91,7 @@ public class LinkedListDemo {
         Scanner sc = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List \n 4.Quit");
+            System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List \n 4. Insert data at random position \n 5.Quit");
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
@@ -85,12 +107,21 @@ public class LinkedListDemo {
                 case 3:
                     linkedList.showList();
                     break;
+
                 case 4:
+                    System.out.println("Enter the number after which you want to add the new number ");
+                    int data = sc.nextInt();
+                    System.out.println("Enter the New number ");
+                    int newdata = sc.nextInt();
+                    linkedList.insertafter(data, newdata);
+                    break;
+
+                case 5:
                     System.out.println("Thank you");
                     break;
             }
         } while (choice != 4);
-       // linkedList.showList();
+        // linkedList.showList();
 
     }
 }
