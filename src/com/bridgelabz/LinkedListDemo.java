@@ -112,7 +112,29 @@ class LinkedList {
 
     }
 
+    //Delete specific Node
+    public void deleteNode(int data) {
+        if (head == null) {
+            System.out.println("Linked List is Empty.");
+        } else {
+            if (data == head.data) {
+                head = head.next;
+            } else {
+                Node prevNode = head;
+                Node temp = head.next;
+                while (prevNode != null) {
+                    if (temp.data == data) {
+                        prevNode.next = temp.next;
+                    }
+                    prevNode = prevNode.next;
+                    temp = temp.next;
+                }
+            }
+        }
+    }
+
 }
+
 
 public class LinkedListDemo {
 
@@ -126,18 +148,19 @@ public class LinkedListDemo {
         int choice;
         do {
             System.out.println("\n 1.Insert Data from Start \n 2.Insert Data from last \n 3.Show Linked List " +
-                    "\n 4. Insert data at random position \n 5. Delete first node \n 6. Delete last node \n 7. Search node \n 8.Quit");
+                    "\n 4. Insert data at random position \n 5. Delete first node \n 6. Delete last node" +
+                    " \n 7. Search node \n Delete Specific Node \n 9.Quit");
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
                     System.out.println("Enter the number");
-                    int firstnumber = sc.nextInt();
-                    linkedList.insertFirst(firstnumber);
+                    int firstNumber = sc.nextInt();
+                    linkedList.insertFirst(firstNumber);
                     break;
                 case 2:
                     System.out.println("Enter the number");
-                    int lastnumber = sc.nextInt();
-                    linkedList.insertLast(lastnumber);
+                    int lastNumber = sc.nextInt();
+                    linkedList.insertLast(lastNumber);
                     break;
                 case 3:
                     linkedList.showList();
@@ -147,8 +170,8 @@ public class LinkedListDemo {
                     System.out.println("Enter the number after which you want to add the new number ");
                     int data = sc.nextInt();
                     System.out.println("Enter the New number ");
-                    int newdata = sc.nextInt();
-                    linkedList.insertafter(data, newdata);
+                    int newData = sc.nextInt();
+                    linkedList.insertafter(data, newData);
                     break;
 
                 case 5:
@@ -161,21 +184,25 @@ public class LinkedListDemo {
 
                 case 7:
                     System.out.println("Enter the number ");
-                    int searchnumber= sc.nextInt();
-                    if (linkedList.search(linkedList.head,searchnumber))
-                    {
+                    int searchNumber = sc.nextInt();
+                    if (linkedList.search(linkedList.head, searchNumber)) {
                         System.out.println(" \n Yes. Element is Found");
-                    }
-                    else
+                    } else
                         System.out.println("\n No. Element is not found");
                     break;
 
                 case 8:
+                    System.out.println("Enter the number which you want to Delete ");
+                    int removeNumber = sc.nextInt();
+                    linkedList.deleteNode(removeNumber);
+                    break;
+
+                case 9:
                     System.out.println("Thank you");
                     break;
             }
         } while (choice != 4);
-         linkedList.showList();
+        linkedList.showList();
 
     }
 }
